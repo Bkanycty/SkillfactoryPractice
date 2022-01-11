@@ -10,7 +10,7 @@ class ConvertionException(Exception):
 class CryptoConverter:
     @staticmethod
     def get_price(quote: str, base: str, amount: str):
-
+        amount = amount.replace(',', '.')
         if quote == base:
             raise ConvertionException(f'Невозможно перевести одинаковые валюты {base}.')
         try:

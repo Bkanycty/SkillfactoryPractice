@@ -28,7 +28,9 @@ def convert(message: telebot.types.Message):
         if len(values) != 3:
             raise ConvertionException('Слишком много или мало параметров.')
         quote, base, amount = values
+        amount = str(amount).replace(',', '.')
         total_base = CryptoConverter.get_price(quote, base, amount)
+
     except ConvertionException as e:
         bot.reply_to(message, f'Ошибка пользователя.\n{e}')
     except Exception as e:
